@@ -5,7 +5,7 @@ const headers = {
   'Authorization': 'auth'
 }
 
-export const getAll = () =>
+export const getCategories = () =>
   fetch(`${url}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)

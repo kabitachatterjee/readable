@@ -7,7 +7,7 @@ class App extends Component {
     categories: []
   }
   componentDidMount() {
-    API.getAll().then((categories) => {
+    API.getCategories().then((categories) => {
       this.setState({
         categories: categories
       })
