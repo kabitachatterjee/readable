@@ -11,7 +11,7 @@ render() {
                 <li key={post.id}>
                     <em>{post.title}</em><br/>
                     {post.body}<br/>
-                    - {post.author}
+                    <em>- {post.author}</em>
                 </li>
                ))}
     </ol>

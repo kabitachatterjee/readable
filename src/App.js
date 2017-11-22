@@ -3,36 +3,41 @@ import * as API from './utils/api';
 import ListCategories from './components/ListCategories';
 import ListPosts from './components/ListPosts';
 import './App.css';
+import { connect } from 'react-redux';
 
 class App extends Component {
-  state = {
-    categories: [],
-    posts:[]
-  }
-  componentDidMount() {
-    API.getCategories().then((categories) => {
-      this.setState({
-        categories: categories
-      })
-      console.log(this.state.categories)
-    })
-    API.getPosts().then((posts) => {
-      this.setState({
-        posts: posts
-      })
-      console.log(this.state.posts)
-    })
-  }
+  // state = {
+  //   categories: [],
+  //   posts:[]
+  // }
+  // componentDidMount() {
+  //   API.getCategories().then((categories) => {
+  //     this.setState({
+  //       categories: categories
+  //     })
+  //     console.log(this.state.categories)
+  //   })
+  //   API.getPosts().then((posts) => {
+  //     this.setState({
+  //       posts: posts
+  //     })
+  //     console.log(this.state.posts)
+  //   })
+  // }
+
+  // componentDidMount() {
+  //   this.props.fetchPosts();
+  //   this.props.fetchCategories();
+  // }
 
 
   render() {
+    console.log(this.props);
     return (
-      <div>
-      <ListCategories categories={this.state.categories} />
-      <ListPosts posts={this.state.posts} />
+      <div>Hello World
       </div>
     );
   }
 }
 
-export default App;
+export default connect()(App);
