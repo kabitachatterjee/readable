@@ -9,5 +9,4 @@ export const fetchPosts = () => dispatch =>
 
 
   export const fetchCategories = () => dispatch =>
-  Api.getCategories().then(payload =>
-    dispatch(receive(FETCH_CATEGORIES, payload)));
+  Api.getCategories().then(payload => dispatch(receive(FETCH_CATEGORIES, payload)));

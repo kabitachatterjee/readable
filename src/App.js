@@ -6,24 +6,25 @@ import './App.css';
 import { connect } from 'react-redux';
 
 class App extends Component {
-  // state = {
-  //   categories: [],
-  //   posts:[]
-  // }
-  // componentDidMount() {
-  //   API.getCategories().then((categories) => {
-  //     this.setState({
-  //       categories: categories
-  //     })
-  //     console.log(this.state.categories)
-  //   })
-  //   API.getPosts().then((posts) => {
-  //     this.setState({
-  //       posts: posts
-  //     })
-  //     console.log(this.state.posts)
-  //   })
-  // }
+  state = {
+    categories: [],
+    posts:[]
+  }
+  componentDidMount() {
+    API.getCategories().then((categories) => {
+      this.setState({
+        categories: categories,
+        posts:[]
+      })
+      console.log(this.state.categories)
+    })
+    API.getPosts().then((posts) => {
+      this.setState({
+        posts: posts
+      })
+      console.log(this.state.posts)
+    })
+  }
 
   // componentDidMount() {
   //   this.props.fetchPosts();
@@ -33,10 +34,20 @@ class App extends Component {
 
   render() {
     console.log(this.props);
+    const { categories, posts } = this.props;
     return (
-      <div>Hello World
+      <div>
+      <ListCategories categories={this.state.categories} />
+      <ListPosts posts={this.state.posts} />
       </div>
     );
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    posts: state.posts,
+    categories: state.categories
   }
 }
 
