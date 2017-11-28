@@ -7,11 +7,17 @@ class AddPostForm extends Component {
   render() {
     return (
       <div>
-        <div className="addForm">
-          <div className="addFormBar">
-            <Link to="/" className="close">Close</Link>
-            </div>
-            </div>
+
+
+        <form className="addFormBar">
+        <h3> Add a New Post </h3>
+          <input  type="text" label="Title" placeholder="Title for the post" />
+          <input  type="text" label="Body" placeholder="Write a post"/>
+          <input  type="text" label="Category" placeholder="Category"/>
+          <input  type="text" label="Author" placeholder="Author"/>
+          <Link to="/" className="close">Close</Link>
+          <input type="submit" label="Submit" id="submit" />
+            </form>
             </div>
           )
         }

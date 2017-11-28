@@ -38,22 +38,19 @@ li {
 
 .addFormBar {
   position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
+  width: 80%;
+  top: 100px;
+  left: 100px;
+  text-align: center;
   z-index: 5;
-  display: flex;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
 }
 
 .addFormBar input {
-  width: 100%;
+  width: 50%;
   padding: 15px 10px;
   font-size: 1.25em;
-  border: none;
-  outline: none;
-  background-color: #000;
-  color: #fff;
+  color: grey;
 }
 .close {
   display: block;
@@ -67,4 +64,15 @@ li {
   background-repeat: no-repeat;
   background-size: 28px;
   font-size: 0;
+}
+#submit {
+  width: 100px;
+  height: 56px;
+  background: #000;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 28px;
+  /*display: block;*/
+
+
 }
