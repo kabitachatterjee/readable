@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { fetchCategories } from '../actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react';
 
 class ListCategories extends Component {
 
@@ -34,7 +35,6 @@ render() {
 
 function mapStateToProps({categories}) {
   return {
-
     categories: categories
   }
 }
