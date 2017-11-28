@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { fetchPosts } from '../actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class ListPosts extends Component {
   static propTypes = {
@@ -28,6 +29,9 @@ render() {
                 </li>
                ))}
     </ul>
+    <div className="open-search">
+            <Link to='/posts/new'>Add a post</Link>
+          </div>
     </div>
   )
 }

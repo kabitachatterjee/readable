@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { fetchCategories } from '../actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react';
+import { Route } from 'react-router-dom';
+import ListPosts from './ListPosts';
+import { Link } from 'react-router-dom';
+
 
 class ListCategories extends Component {
 
@@ -24,9 +27,10 @@ render() {
     <ul>
     {categories.map((category) => (
                 <li key={category.name} className='subheader'>
-                    {category.name}
+                  <Link to='/{category.path}'>{category.name}</Link>
                     </li>))}
                </ul>
+               
     </div>
   )
 }
