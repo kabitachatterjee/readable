@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
+import ListPosts from './ListPosts';
 
 class ListCategories extends Component {
 render() {
-  const { categories} = this.props
+  const { categories,posts} = this.props
   return (
     <div>
     <h1>List of Categories</h1>
-    <ol>
+    <ul>
     {categories.map((category) => (
-                <li key={category.name}>
-                    {category.name}
-                </li>
-               ))}
-    </ol>
+                <li key={category.name} className='subheader'>
+                    <a href='/:categories/posts'>{category.name}</a>
+                    </li>))}
+               </ul>
     </div>
   )
 }

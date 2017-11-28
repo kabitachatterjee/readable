@@ -3,3 +3,35 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1070px;
+  padding: 20px;
+  min-width: 1070px;
+}
+.subheader {
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  margin-left: 152px;
+}
+
+.icon-grid ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

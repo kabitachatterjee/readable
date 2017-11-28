@@ -36,9 +36,13 @@ class App extends Component {
     console.log(this.props);
     const { categories, posts } = this.props;
     return (
-      <div>
+      <div className='container'>
+      <div className='categories'>
+      <div className='icon-grid'>
       <ListCategories categories={this.state.categories} />
-      <ListPosts posts={this.state.posts} />
+      </div>
+      </div>
+      
       </div>
     );
   }
@@ -51,4 +55,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect()(App);
+export default connect(mapStateToProps)(App);
