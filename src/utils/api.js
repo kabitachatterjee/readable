@@ -23,3 +23,6 @@ export const getCategories = () =>
             },
             body: JSON.stringify(post)
           }).then(res => res.json());
+
+          export const getPost = id =>
+  fetch(`${url}/posts/${id}`, { headers }).then(res => res.json());

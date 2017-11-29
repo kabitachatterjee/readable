@@ -4,6 +4,8 @@ import { receive } from '../utils/helper';
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const ADD_POST = 'ADD_POST';
+export const GET_POST = 'GET_POST';
+
 
 export const fetchPosts = () => dispatch =>
   Api.getPosts().then(payload => dispatch(receive(FETCH_POSTS, payload)));
@@ -19,3 +21,6 @@ export const fetchPosts = () => dispatch =>
       payload
     });
   });
+
+  export const getPost = id => dispatch =>
+  Api.getPost(id).then(payload => dispatch(receive(GET_POST, payload)));
