@@ -1,26 +1,85 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
+import { addPost } from '../actions';
+import serializeForm from 'form-serialize';
+import { v4 } from 'uuid';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class AddPostForm extends Component {
 
+  static propTypes = {
+    post: PropTypes.object,
+    categories: PropTypes.array,
+    addPost: PropTypes.func.isRequired
+  };
+
+  state = {
+    author: this.props.post ? this.props.post.author : '',
+    title: this.props.post ? this.props.post.title : '',
+    body: this.props.post ? this.props.post.body : '',
+    category: this.props.post ? this.props.post.category : '',
+    changed: false
+  };
+
+redirect = () => this.setState({ changed: true });
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { post, addPost } = this.props;
+    const values = serializeForm(e.target,{ hash:true });
+    //console.log(values);
+    //addPost(values);
+    this.setState({
+                  author: values.author,
+                  body: values.body,
+                  title: values.title,
+                  category: values.category,
+                  changed: true
+                });
+
+    const newPost = {
+        id: v4(),
+        timestamp: Date.now(),
+        author: this.state.author,
+        body: this.state.body,
+        title: this.state.title,
+        category: this.state.category
+      };
+      console.log(newPost);
+      console.log(this.state);
+      addPost(newPost);
+      this.redirect();
+  }
+
   render() {
+    const { post } = this.props;
+    const { changed } = this.state;
+
     return (
       <div>
 
 
-        <form className="addFormBar">
+        <form onSubmit={this.handleSubmit} className="addFormBar">
         <h3> Add a New Post </h3>
           <input  type="text" name="title" placeholder="Title for the post" />
           <input  type="text" name="body" placeholder="Write a post"/>
           <input  type="text" name="category" placeholder="Category"/>
           <input  type="text" name="author" placeholder="Author"/>
           <Link to="/" className="close">Close</Link>
-          <button type="submit" label="Submit" id="submit">Submit</button>
+          <button type="submit" label="Submit" id="submit" onClick={this.redirect}>Submit</button>
             </form>
             </div>
           )
         }
 
 }
-export default AddPostForm;
+
+function mapStateToProps({addPost}) {
+  return {
+    addPost: addPost
+  }
+}
+
+export default connect(mapStateToProps,{addPost})(AddPostForm);
+//export default AddPostForm;
