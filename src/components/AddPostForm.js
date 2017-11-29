@@ -11,12 +11,12 @@ class AddPostForm extends Component {
 
         <form className="addFormBar">
         <h3> Add a New Post </h3>
-          <input  type="text" label="Title" placeholder="Title for the post" />
-          <input  type="text" label="Body" placeholder="Write a post"/>
-          <input  type="text" label="Category" placeholder="Category"/>
-          <input  type="text" label="Author" placeholder="Author"/>
+          <input  type="text" name="title" placeholder="Title for the post" />
+          <input  type="text" name="body" placeholder="Write a post"/>
+          <input  type="text" name="category" placeholder="Category"/>
+          <input  type="text" name="author" placeholder="Author"/>
           <Link to="/" className="close">Close</Link>
-          <input type="submit" label="Submit" id="submit" />
+          <button type="submit" label="Submit" id="submit">Submit</button>
             </form>
             </div>
           )
