@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { getPost } from '../actions';
+import { getPost, deletePost } from '../actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 
 class PostShow extends Component {
   static propTypes = {
@@ -26,7 +27,11 @@ class PostShow extends Component {
 
   render() {
     const { post } = this.props;
+    const { deleted } = this.state;
     console.log(post);
+    if (deleted) {
+      return <Redirect to={'/'} />;
+    }
     return(
       <div>
       <h3>{post.title}</h3>
@@ -46,7 +51,8 @@ function mapStateToProps({ posts }, { match }) {
 }
 
 export default connect(mapStateToProps, {
-  getPost
+  getPost,
+  deletePost
 })(PostShow);
 
 //export default PostShow;
