@@ -23,7 +23,9 @@ render() {
     <ul>
     {posts.map((post) => (
                 <li key={post.id}>
-                    <em>{post.title}</em><br/>
+                <Link to={`/${post.category}/${post.id}`}>
+                  <em>{post.title}</em>
+                  </Link><br/>
                     {post.body}<br/>
                     <em>- {post.author}</em>
                 </li>
