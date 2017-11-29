@@ -6,7 +6,11 @@ import { connect } from 'react-redux';
 class PostShow extends Component {
   static propTypes = {
     post: PropTypes.object,
-    getPost: PropTypes.func.isRequired
+    getPost: PropTypes.func.isRequired,
+    deletePost: PropTypes.func.isRequired
+  };
+  state = {
+      deleted: false
   };
   componentDidMount() {
     const { postId } = this.props.match.params;
@@ -15,6 +19,10 @@ class PostShow extends Component {
     this.props.getPost(postId);
 
   }
+  handleDelete = post => {
+    this.props.deletePost(post);
+    this.setState({ deleted: true });
+  };
 
   render() {
     const { post } = this.props;
@@ -24,6 +32,7 @@ class PostShow extends Component {
       <h3>{post.title}</h3>
       <p>{post.body}</p>
       <em> -{post.author}</em> at {post.timestamp}
+      <button>Edit</button><button onClick={() => this.handleDelete(post)}>Delete</button>
       </div>
     )
   }
