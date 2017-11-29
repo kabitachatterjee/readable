@@ -1,6 +1,7 @@
 import { FETCH_POSTS } from '../actions';
 import { FETCH_CATEGORIES } from '../actions';
 import { ADD_POST } from '../actions';
+import { GET_POST } from '../actions';
 import { combineReducers } from 'redux';
 
 function posts(state = [], action) {
@@ -9,6 +10,8 @@ function posts(state = [], action) {
       return [...action.payload];
       case ADD_POST:
         return [...state, action.payload];
+      case GET_POST:
+          return [...state, action.payload];
     default:
       return state;
   }
