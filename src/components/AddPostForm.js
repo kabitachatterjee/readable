@@ -28,15 +28,14 @@ redirect = () => this.setState({ changed: true });
     e.preventDefault();
     const { post, addPost } = this.props;
     const values = serializeForm(e.target,{ hash:true });
-    //console.log(values);
-    //addPost(values);
+
     this.setState({
                   author: values.author,
                   body: values.body,
                   title: values.title,
-                  category: values.category,
-                  changed: true
+                  category: values.category
                 });
+
 
     const newPost = {
         id: v4(),
@@ -46,6 +45,7 @@ redirect = () => this.setState({ changed: true });
         title: this.state.title,
         category: this.state.category
       };
+
       console.log(newPost);
       console.log(this.state);
       addPost(newPost);
