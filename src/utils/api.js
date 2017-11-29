@@ -26,3 +26,11 @@ export const getCategories = () =>
 
           export const getPost = id =>
   fetch(`${url}/posts/${id}`, { headers }).then(res => res.json());
+
+  export const deletePost = id =>
+  fetch(`${url}/posts/${id}`, {
+    method: 'DELETE',
+    headers: {
+      ...headers
+    }
+  });
