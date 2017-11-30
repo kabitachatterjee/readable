@@ -27,7 +27,7 @@ render() {
     <ul class="collection">
     {categories.map((category) => (
                 <li class="collection-item" key={category.name} className='subheader'>
-                  <Link to={`/${category.path}`}>{category.name}</Link>
+                  <Link to={`/${category.path}`}>{category.name} <i class="material-icons">send</i></Link>
                     </li>))}
                </ul>
 

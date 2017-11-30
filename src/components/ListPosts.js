@@ -29,8 +29,8 @@ render() {
                 </li>
                ))}
     </ul>
-    <div className="open-search">
-            <Link to='/posts/new'>Add a post</Link>
+    <div class="btn-floating blue">
+            <Link to='/posts/new'><i class="material-icons">add</i></Link>
           </div>
     </div>
   )
