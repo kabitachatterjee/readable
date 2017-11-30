@@ -34,3 +34,13 @@ export const getCategories = () =>
       ...headers
     }
   });
+
+  export const updatePost = post =>
+  fetch(`${url}/posts/${post.id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(post)
+  }).then(res => res.json());

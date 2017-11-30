@@ -10,8 +10,22 @@ import { connect } from 'react-redux';
 class UpdatePostForm extends Component {
   render() {
     return (
-      <div> Update Post</div>
-    )
+      <div>
+
+
+        <form onSubmit={this.handleSubmit} className="addFormBar">
+        <Link to="/" className="close">Close</Link>
+        <h3> Update Post </h3>
+          <input  type="text" name="title" placeholder="Title for the post" required />
+          <input  type="text" name="body" placeholder="Write a post" required />
+          <input  type="text" name="category" placeholder="Category" required />
+          <input  type="text" name="author" placeholder="Author" required /><br />
+          <button class="waves-effect waves-light btn" onClick={this.redirect}>Update</button>
+
+            </form>
+            </div>
+          )
+
   }
 }
 
