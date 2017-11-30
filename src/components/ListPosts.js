@@ -19,15 +19,13 @@ render() {
   console.log(this.props);
   return (
     <div>
-    <h1>List of Posts</h1>
-    <ul>
+    <h3 class="collection-header">List of Posts</h3>
+    <ul class="collection">
     {posts.map((post) => (
-                <li key={post.id}>
+                <li class="collection-item" key={post.id}>
                 <Link to={`/${post.category}/${post.id}`}>
                   <em>{post.title}</em>
-                  </Link><br/>
-                    {post.body}<br/>
-                    <em>- {post.author}</em>
+                  </Link>
                 </li>
                ))}
     </ul>

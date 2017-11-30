@@ -23,14 +23,14 @@ render() {
   console.log(this.props);
   return (
     <div>
-    <h1>List of Categories</h1>
-    <ul>
+    <h3 class="collection-header">List of Categories</h3>
+    <ul class="collection">
     {categories.map((category) => (
-                <li key={category.name} className='subheader'>
-                  <Link to='/{category.path}'>{category.name}</Link>
+                <li class="collection-item" key={category.name} className='subheader'>
+                  <Link to={`/${category.path}`}>{category.name}</Link>
                     </li>))}
                </ul>
-               
+
     </div>
   )
 }
