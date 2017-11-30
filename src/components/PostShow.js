@@ -34,6 +34,7 @@ class PostShow extends Component {
       return (<Redirect to={'/'} />);
     }
     return(
+      <div class="container">
       <div class="row">
       <div class="col s12 m6">
           <div class="card blue-grey darken-1">
@@ -44,11 +45,13 @@ class PostShow extends Component {
       </div>
       <div class="card-action">
       <Button waves='light'>
-      Edit
- </Button><Button waves='light' onClick={() => this.handleDelete(post)}>Delete</Button>
+          <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
+      </Button>
+ <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
       </div>
           </div>
         </div>
+      </div>
       </div>
     )
   }

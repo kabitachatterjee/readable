@@ -19,6 +19,7 @@ render() {
   console.log(this.props);
   return (
     <div>
+    <div>
     <h3 class="collection-header">List of Posts</h3>
     <ul class="collection">
     {posts.map((post) => (
@@ -29,8 +30,11 @@ render() {
                 </li>
                ))}
     </ul>
+    </div>
     <div class="btn-floating blue">
-            <Link to='/posts/new'><i class="material-icons">add</i></Link>
+            <Link to={`/posts/new`}>
+            <i class="material-icons">add</i>
+            </Link>
           </div>
     </div>
   )

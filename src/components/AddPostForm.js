@@ -53,7 +53,7 @@ redirect = () => this.setState({ changed: true });
   }
 
   render() {
-    const { post } = this.props;
+    const { post,addPost } = this.props;
     const { changed } = this.state;
 
     return (
@@ -61,13 +61,14 @@ redirect = () => this.setState({ changed: true });
 
 
         <form onSubmit={this.handleSubmit} className="addFormBar">
+        <Link to="/" className="close">Close</Link>
         <h3> Add a New Post </h3>
-          <input  type="text" name="title" placeholder="Title for the post" />
-          <input  type="text" name="body" placeholder="Write a post"/>
-          <input  type="text" name="category" placeholder="Category"/>
-          <input  type="text" name="author" placeholder="Author"/>
-          <Link to="/" className="close">Close</Link>
-          <button type="submit" label="Submit" id="submit" onClick={this.redirect}>Submit</button>
+          <input  type="text" name="title" placeholder="Title for the post" required />
+          <input  type="text" name="body" placeholder="Write a post" required />
+          <input  type="text" name="category" placeholder="Category" required />
+          <input  type="text" name="author" placeholder="Author" required /><br />
+          <button class="waves-effect waves-light btn" onClick={this.redirect}>Submit</button>
+
             </form>
             </div>
           )
@@ -82,4 +83,3 @@ function mapStateToProps({addPost}) {
 }
 
 export default connect(mapStateToProps,{addPost})(AddPostForm);
-//export default AddPostForm;
