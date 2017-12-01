@@ -5,6 +5,7 @@
   "dependencies": {
     "form-serialize": "^0.7.2",
     "materialize-css": "^0.100.2",
+    "moment": "^2.19.3",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-icons": "^2.2.7",

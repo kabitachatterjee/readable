@@ -4,12 +4,13 @@ import ListComments from './ListComments';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+import moment from 'moment';
 import {Button, Icon} from 'react-materialize';
 
 class PostShow extends Component {
   static propTypes = {
     post: PropTypes.object,
-    comments: PropTypes.object,
+    comments: PropTypes.array,
     getPost: PropTypes.func.isRequired,
     deletePost: PropTypes.func.isRequired,
     updatePost: PropTypes.func.isRequired,
@@ -64,7 +65,9 @@ class PostShow extends Component {
             <div class="card-content white-text">
       <span class="card-title">{post.title}</span>
       <p>{post.body}</p>
-      <em> -{post.author}</em> at {post.timestamp}<br/>
+      <em> -{post.author}</em> on {moment(post.timestamp).format(
+                    'Do MMMM YYYY, h:mm a'
+                  )} <br/>
       <p>Vote :{post.voteScore}</p>
       <p>Comments: {post.commentCount}</p>
       </div>
@@ -77,7 +80,8 @@ class PostShow extends Component {
  <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
       </div>
       <div class="card-content white-text">
-      Comments will come here!!
+      comments show up here!!
+
       </div>
           </div>
         </div>
