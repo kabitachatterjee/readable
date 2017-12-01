@@ -5,6 +5,7 @@ const headers = {
   'Authorization': 'auth'
 }
 
+// methods for posts
 export const getCategories = () =>
   fetch(`${url}/categories`, { headers })
     .then(res => res.json())
@@ -44,3 +45,8 @@ export const getCategories = () =>
     },
     body: JSON.stringify(post)
   }).then(res => res.json());
+
+// methods for comments
+
+  export const getPostComments = id =>
+  fetch(`${url}/posts/${id}/comments`, { headers }).then(res => res.json());

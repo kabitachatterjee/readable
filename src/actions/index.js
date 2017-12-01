@@ -7,8 +7,10 @@ export const ADD_POST = 'ADD_POST';
 export const GET_POST = 'GET_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
+export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 
 
+// actions for comments
 export const fetchPosts = () => dispatch =>
   Api.getPosts().then(payload => dispatch(receive(FETCH_POSTS, payload)));
 
@@ -39,3 +41,11 @@ export const fetchPosts = () => dispatch =>
 
   export const updatePost = post => dispatch =>
   Api.updatePost(post).then(payload => dispatch(receive(UPDATE_POST, payload)));
+
+
+  // actions for comments
+
+export const fetchComments = postId => dispatch =>
+  Api.getPostComments(postId).then(payload =>
+    dispatch(receive(FETCH_COMMENTS, { postId, payload }))
+  );

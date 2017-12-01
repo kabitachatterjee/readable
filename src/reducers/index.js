@@ -1,5 +1,5 @@
 import { FETCH_POSTS } from '../actions';
-import { FETCH_CATEGORIES } from '../actions';
+import { FETCH_CATEGORIES, FETCH_COMMENTS} from '../actions';
 import { ADD_POST } from '../actions';
 import { GET_POST,DELETE_POST,UPDATE_POST } from '../actions';
 import { combineReducers } from 'redux';
@@ -17,7 +17,7 @@ function posts(state = [], action) {
       case UPDATE_POST:
           return state.map(
             post => (action.payload.id === post.id ? action.payload : post)
-            );
+            )
     default:
       return state;
   }
@@ -31,7 +31,20 @@ function categories(state = [], action) {
   }
 }
 
+function comments(state = [], action) {
+  switch (action.type) {
+    case FETCH_COMMENTS:
+        return {
+            ...state,
+              [action.payload.postId]: action.payload.payload
+          };
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   posts,
-  categories
+  categories,
+  comments
 });
