@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getPost, deletePost, updatePost } from '../actions';
+import ListComments from './ListComments';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
@@ -72,7 +73,7 @@ class PostShow extends Component {
  <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
       </div>
       <div class="card-content white-text">
-      Comments List
+      <ListComments />
       </div>
           </div>
         </div>
