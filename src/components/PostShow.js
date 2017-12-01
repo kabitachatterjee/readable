@@ -9,11 +9,15 @@ class PostShow extends Component {
   static propTypes = {
     post: PropTypes.object,
     getPost: PropTypes.func.isRequired,
-    deletePost: PropTypes.func.isRequired
+    deletePost: PropTypes.func.isRequired,
+    updatePost: PropTypes.func.isRequired
   };
   state = {
-      deleted: false
+      deleted: false,
+      updated: false,
+      voteScore: this.props.post ? this.props.post.voteScore : ''
   };
+
   componentDidMount() {
     const { postId } = this.props.match.params;
     console.log(postId);
@@ -29,14 +33,24 @@ class PostShow extends Component {
     this.props.updatePost(post);
     this.setState({ updated: true });
   }
+  handleUpVote = post => {
+    this.setState({ voteScore: parseInt(this.props.post.voteScore) + 1 ,
+                    updated: true });
+    this.props.updatePost(post);
+
+  }
+  handleDownVote = post => {
+    this.setState({ voteScore: parseInt(this.props.post.voteScore) - 1 ,
+                    updated: true });
+    this.props.updatePost(post);
+
+  }
 
   render() {
     const { post } = this.props;
-    const { deleted } = this.state;
-    console.log(post);
-    if (deleted) {
-      return (<Redirect to={'/'} />);
-    }
+    const { deleted,voteScore, updated } = this.state;
+    console.log(this.state);
+
     return(
       <div class="container">
       <div class="row">
@@ -54,8 +68,8 @@ class PostShow extends Component {
           <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
       </Button>
  <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
- <Button waves='light'><i class="material-icons">thumb_up</i></Button>
- <Button waves='light'><i class="material-icons">thumb_down</i></Button>
+ <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
+ <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
       </div>
       <div class="card-content white-text">
       Comments List
@@ -83,5 +97,6 @@ function mapStateToProps({ posts }, { match }) {
 
 export default connect(mapStateToProps, {
   getPost,
-  deletePost
+  deletePost,
+  updatePost
 })(PostShow);
