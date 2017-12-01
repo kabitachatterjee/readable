@@ -45,7 +45,9 @@ class PostShow extends Component {
             <div class="card-content white-text">
       <span class="card-title">{post.title}</span>
       <p>{post.body}</p>
-      <em> -{post.author}</em> at {post.timestamp}
+      <em> -{post.author}</em> at {post.timestamp}<br/>
+      <p>Vote :{post.voteScore}</p>
+      <p>Comments: {post.commentCount}</p>
       </div>
       <div class="card-action">
       <Button waves='light'>
