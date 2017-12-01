@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getPost, deletePost, updatePost } from '../actions';
+import { getPost, deletePost, updatePost,fetchComments } from '../actions';
 import ListComments from './ListComments';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -9,9 +9,11 @@ import {Button, Icon} from 'react-materialize';
 class PostShow extends Component {
   static propTypes = {
     post: PropTypes.object,
+    comments: PropTypes.object,
     getPost: PropTypes.func.isRequired,
     deletePost: PropTypes.func.isRequired,
-    updatePost: PropTypes.func.isRequired
+    updatePost: PropTypes.func.isRequired,
+    fetchComments: PropTypes.func.isRequired
   };
   state = {
       deleted: false,
@@ -24,6 +26,7 @@ class PostShow extends Component {
     console.log(postId);
 
     this.props.getPost(postId);
+    this.props.fetchComments(postId);
 
   }
   handleDelete = post => {
@@ -48,9 +51,10 @@ class PostShow extends Component {
   }
 
   render() {
-    const { post } = this.props;
+    const { post, comments } = this.props;
     const { deleted,voteScore, updated } = this.state;
     console.log(this.state);
+    console.log(this.props.comments);
 
     return(
       <div class="container">
@@ -73,7 +77,7 @@ class PostShow extends Component {
  <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
       </div>
       <div class="card-content white-text">
-      <ListComments />
+      Comments will come here!!
       </div>
           </div>
         </div>
@@ -90,14 +94,16 @@ class PostShow extends Component {
 
 }
 
-function mapStateToProps({ posts }, { match }) {
+function mapStateToProps({ posts,comments }, { match }) {
   return {
-    post: posts.filter(post => post.id === match.params.postId)[0]
+    post: posts.filter(post => post.id === match.params.postId)[0],
+    comments: comments
   };
 }
 
 export default connect(mapStateToProps, {
   getPost,
   deletePost,
-  updatePost
+  updatePost,
+  fetchComments
 })(PostShow);

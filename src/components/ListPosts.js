@@ -42,9 +42,9 @@ render() {
 
 }
 
-function mapStateToProps({posts}) {
+function mapStateToProps({posts},{ match }) {
   return {
-    posts: posts
+    posts: posts.filter(post => post.category === match.params.categories)
   }
 }
 
