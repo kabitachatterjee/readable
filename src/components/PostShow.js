@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getPost, deletePost } from '../actions';
+import { getPost, deletePost, updatePost } from '../actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
@@ -25,6 +25,10 @@ class PostShow extends Component {
     this.props.deletePost(post);
     this.setState({ deleted: true });
   };
+  handleUpdate = post => {
+    this.props.updatePost(post);
+    this.setState({ updated: true });
+  }
 
   render() {
     const { post } = this.props;
@@ -51,8 +55,17 @@ class PostShow extends Component {
  <Button waves='light'><i class="material-icons">thumb_up</i></Button>
  <Button waves='light'><i class="material-icons">thumb_down</i></Button>
       </div>
+      <div class="card-content white-text">
+      Comments List
+      </div>
           </div>
         </div>
+      </div>
+      <div class="row">
+      <div class="col s12 m6">
+      <input placeholder="Write a comment..." s={6} label="Comment" />
+      <input placeholder="author" s={6} label="author" />
+      </div>
       </div>
       </div>
     )
