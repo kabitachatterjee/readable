@@ -59,17 +59,17 @@ class PostShow extends Component {
 
     return(
       <div class="container">
-      <div class="row">
-      <div class="col s12 m6">
+      <div class="row card">
+      <div class="col s12 m12 activator">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-      <span class="card-title">{post.title}</span>
+      <span class="card-title">{post.title} <i class="material-icons right">more_vert</i></span>
       <p>{post.body}</p>
-      <em> -{post.author}</em> on {moment(post.timestamp).format(
+      <em class="yellow-text"> -{post.author} on {moment(post.timestamp).format(
                     'Do MMMM YYYY, h:mm a'
-                  )} <br/>
-      <p>Vote :{post.voteScore}</p>
-      <p>Comments: {post.commentCount}</p>
+                  )}</em> <br/>
+      <p class="chip purple accent-2">Vote: {post.voteScore}</p>
+      <p class="chip purple accent-2">Comments: {post.commentCount}</p>
       </div>
       <div class="card-action">
       <Button waves='light'>
@@ -79,15 +79,66 @@ class PostShow extends Component {
  <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
  <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
       </div>
-      <div class="card-content white-text">
-      comments show up here!!
+      <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">{post.title}<i class="material-icons right">close</i></span>
+      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+    </div>
 
-      </div>
           </div>
         </div>
       </div>
-      <div class="row">
-      <div class="col s12 m6">
+      <div class="row card">
+      <div class="col s12 m12">
+      <div class="card-content blue-text">
+      <ul>
+      <li><span class="black-text">author:</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      <div class="card-action">
+      <Button waves='light'>
+          <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
+      </Button>
+ <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
+ <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
+ <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
+      </div>
+      </li>
+      <li><span class="black-text">author:</span>comments show up here!!
+      <div class="card-action">
+      <Button waves='light'>
+          <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
+      </Button>
+ <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
+ <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
+ <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
+      </div>
+      </li>
+      <li><span class="black-text">author:</span>comments show up here!!
+      <div class="card-action">
+      <Button waves='light'>
+          <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
+      </Button>
+ <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
+ <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
+ <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
+      </div>
+      </li>
+      <li><span class="black-text">author:</span>comments show up here!!
+      <div class="card-action">
+      <Button waves='light'>
+          <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
+      </Button>
+ <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
+ <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
+ <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
+      </div>
+      </li>
+      </ul>
+
+      </div>
+
+      </div>
+      </div>
+      <div class="row card">
+      <div class="col s10 m10">
       <input placeholder="Write a comment..." s={6} label="Comment" />
       <input placeholder="author" s={6} label="author" />
       </div>
