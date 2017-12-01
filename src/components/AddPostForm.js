@@ -16,10 +16,10 @@ class AddPostForm extends Component {
   };
 
   state = {
-    author: this.props.post ? this.props.post.author : '',
-    title: this.props.post ? this.props.post.title : '',
-    body: this.props.post ? this.props.post.body : '',
-    category: this.props.post ? this.props.post.category : '',
+    author:'',
+    title:'',
+    body:'',
+    category:'',
     changed: false
   };
 
@@ -29,14 +29,18 @@ redirect = () => this.setState({ changed: true });
     const { post, addPost } = this.props;
     const values = serializeForm(e.target,{ hash:true });
 
-    this.setState({
+
+    this.setState((prevState) => {
+      return {
                   author: values.author,
                   body: values.body,
                   title: values.title,
-                  category: values.category
+                  category: values.category,
+                  changed: true
+                }
                 });
 
-
+if(this.state.changed) {
     const newPost = {
         id: v4(),
         timestamp: Date.now(),
@@ -49,7 +53,8 @@ redirect = () => this.setState({ changed: true });
       console.log(newPost);
       console.log(this.state);
       addPost(newPost);
-      this.redirect();
+    }
+      //this.redirect();
   }
 
   render() {

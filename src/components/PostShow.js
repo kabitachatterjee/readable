@@ -48,6 +48,8 @@ class PostShow extends Component {
           <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
       </Button>
  <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
+ <Button waves='light'><i class="material-icons">thumb_up</i></Button>
+ <Button waves='light'><i class="material-icons">thumb_down</i></Button>
       </div>
           </div>
         </div>

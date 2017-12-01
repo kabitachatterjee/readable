@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 class UpdatePostForm extends Component {
   static propTypes = {
     post: PropTypes.object,
-    categories: PropTypes.array,
+    // categories: PropTypes.array,
     updatePost: PropTypes.func.isRequired
   };
 
@@ -26,6 +26,13 @@ class UpdatePostForm extends Component {
     console.log(postId);
 
   }
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value
+    });
+  };
+  redirect = () => this.setState({ updated: true });
 
   handleUpdate = event => {
     event.preventDefault();
@@ -43,25 +50,28 @@ class UpdatePostForm extends Component {
         category: this.state.category
       };
       updatePost(updatedPost);
+      console.log(updatedPost);
+
     }
+
+    this.redirect();
+
   }
   render() {
-    const { categories,post } = this.props;
+    const {post,updatePost } = this.props;
     const { updated } = this.state;
-    if (updated) {
-      return <Redirect to={'/'} />;
-    }
+    console.log(updated);
+    console.log(this.state);
+
     return (
       <div>
-
-
         <form onSubmit={this.handleUpdate} className="addFormBar">
         <Link to="/" className="close">Close</Link>
         <h3> Update Post </h3>
-          <input  type="text" name="title" placeholder="Title for the post" value={this.state.title} required />
-          <input  type="text" name="body" placeholder="Write a post" value={this.state.body} required />
-          <input  type="text" name="category" placeholder="Category" value={this.state.category} required />
-          <input  type="text" name="author" placeholder="Author" value={this.state.author} required /><br />
+          <input  type="text" name="title" placeholder="Title for the post" value={this.state.title} onChange={this.handleChange('title')} required />
+          <input  type="text" name="body" placeholder="Write a post" value={this.state.body} onChange={this.handleChange('body')} required />
+          <input  type="text" name="category" placeholder="Category" value={this.state.category} onChange={this.handleChange('category')} required />
+          <input  type="text" name="author" placeholder="Author" value={this.state.author} onChange={this.handleChange('author')} required /><br />
           <button class="waves-effect waves-light btn" onClick={this.redirect}>Update</button>
 
             </form>
@@ -71,7 +81,7 @@ class UpdatePostForm extends Component {
   }
 }
 
-function mapStateToProps({ posts, categories, updatePost }, { match }) {
+function mapStateToProps({ posts, updatePost }, { match }) {
   return {
     post: posts.filter(post => post.id === match.params.postId)[0],
     // categories: categories.filter(
