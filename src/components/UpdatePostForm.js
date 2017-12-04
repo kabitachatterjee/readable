@@ -62,6 +62,9 @@ class UpdatePostForm extends Component {
     const { updated } = this.state;
     console.log(updated);
     console.log(this.state);
+    if (updated) {
+      return <Redirect to={`/${post.category}`} />;
+    }
 
     return (
       <div>
@@ -72,7 +75,7 @@ class UpdatePostForm extends Component {
           <input  type="text" name="body" placeholder="Write a post" value={this.state.body} onChange={this.handleChange('body')} required />
           <input  type="text" name="category" placeholder="Category" value={this.state.category} onChange={this.handleChange('category')} required />
           <input  type="text" name="author" placeholder="Author" value={this.state.author} onChange={this.handleChange('author')} required /><br />
-          <button class="waves-effect waves-light btn" onClick={this.redirect}>Update</button>
+          <button class="waves-effect waves-light btn">Update</button>
 
             </form>
             </div>

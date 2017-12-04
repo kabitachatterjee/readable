@@ -56,6 +56,9 @@ class PostShow extends Component {
     const { deleted,voteScore, updated } = this.state;
     console.log(this.state);
     console.log(this.props.comments);
+    if (deleted) {
+      return <Redirect to={'/'} />;
+    }
 
     return(
       <div class="container">
