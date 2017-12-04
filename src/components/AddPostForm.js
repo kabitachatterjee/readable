@@ -24,23 +24,26 @@ class AddPostForm extends Component {
   };
 
 redirect = () => this.setState({ changed: true });
+handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value
+    });
+  };
   handleSubmit = (e) => {
     e.preventDefault();
-    const { post, addPost } = this.props;
-    const values = serializeForm(e.target,{ hash:true });
+    const { addPost } = this.props;
+    // const values = serializeForm(e.target,{ hash:true });
+    //
+    //
+    // this.setState((prevState) => {
+    //   return {
+    //               author: values.author,
+    //               body: values.body,
+    //               title: values.title,
+    //               category: values.category
+    //             }
+    //             });
 
-
-    this.setState((prevState) => {
-      return {
-                  author: values.author,
-                  body: values.body,
-                  title: values.title,
-                  category: values.category,
-                  changed: true
-                }
-                });
-
-if(this.state.changed) {
     const newPost = {
         id: v4(),
         timestamp: Date.now(),
@@ -52,14 +55,19 @@ if(this.state.changed) {
 
       console.log(newPost);
       console.log(this.state);
+      if(newPost){
       addPost(newPost);
     }
-      //this.redirect();
+
+      this.redirect();
   }
 
   render() {
     const { post,addPost } = this.props;
     const { changed } = this.state;
+    if (changed) {
+      return <Redirect to={'/'} />;
+    }
 
     return (
       <div>
@@ -68,11 +76,11 @@ if(this.state.changed) {
         <form onSubmit={this.handleSubmit} className="addFormBar">
         <Link to="/" className="close">Close</Link>
         <h3> Add a New Post </h3>
-          <input  type="text" name="title" placeholder="Title for the post" required />
-          <input  type="text" name="body" placeholder="Write a post" required />
-          <input  type="text" name="category" placeholder="Category" required />
-          <input  type="text" name="author" placeholder="Author" required /><br />
-          <button class="waves-effect waves-light btn" onClick={this.redirect}>Submit</button>
+          <input  type="text" name="title" value={this.state.title} onChange={this.handleChange('title')} placeholder="Title for the post" required />
+          <input  type="text" name="body" value={this.state.body} onChange={this.handleChange('body')} placeholder="Write a post" required />
+          <input  type="text" name="category" value={this.state.category}  onChange={this.handleChange('category')} placeholder="Category" required />
+          <input  type="text" name="author" value={this.state.author} onChange={this.handleChange('author')} placeholder="Author" required /><br />
+          <button class="waves-effect waves-light btn">Submit</button>
 
             </form>
             </div>

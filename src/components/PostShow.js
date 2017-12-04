@@ -60,12 +60,12 @@ class PostShow extends Component {
     return(
       <div class="container">
       <div class="row card">
-      <div class="col s12 m12 activator">
+      <div class="col s12 m12">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-      <span class="card-title">{post.title} <i class="material-icons right">more_vert</i></span>
+      <span class="card-title">{post.title}</span>
       <p>{post.body}</p>
-      <em class="yellow-text"> -{post.author} on {moment(post.timestamp).format(
+      <em class="yellow-text right"> -{post.author} on {moment(post.timestamp).format(
                     'Do MMMM YYYY, h:mm a'
                   )}</em> <br/>
       <p class="chip purple accent-2">Vote: {post.voteScore}</p>
@@ -79,10 +79,6 @@ class PostShow extends Component {
  <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
  <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
       </div>
-      <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">{post.title}<i class="material-icons right">close</i></span>
-      <p>Here is some more information about this product that is only revealed once clicked on.</p>
-    </div>
 
           </div>
         </div>
@@ -139,8 +135,11 @@ class PostShow extends Component {
       </div>
       <div class="row card">
       <div class="col s10 m10">
+      <div class="card-content">
       <input placeholder="Write a comment..." s={6} label="Comment" />
       <input placeholder="author" s={6} label="author" />
+      <button class="waves-effect waves-light btn btn-small">Submit</button>
+      </div>
       </div>
       </div>
       </div>
