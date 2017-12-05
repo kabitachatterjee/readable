@@ -42,7 +42,7 @@ render() {
                           <i class="material-icons">add</i>
                           </Link>
                         </div>
-                  {posts.map((post) => (
+                  {posts.filter(post => post.category === category.name).map((post) => (
                               <li key={post.id}>
                               <Link to={`/${post.category}/${post.id}`}>
                                 <p>{post.title} <em><span class="white-text right">-{post.author} on {moment(post.timestamp).format(
@@ -71,7 +71,6 @@ render() {
 function mapStateToProps({categories,posts},{ match }) {
   return {
     categories: categories,
-    //posts: posts.filter(post => post.category === category.name),
     posts: posts
   }
 }

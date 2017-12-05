@@ -15,8 +15,8 @@ export const getCategories = () =>
       fetch(`${url}/posts`, { headers })
         .then(res => res.json())
 
-        export const addPost = post =>
-          fetch(`${url}/posts`, {
+    export const addPost = post =>
+      fetch(`${url}/posts`, {
             method: 'POST',
             headers: {
               ...headers,
@@ -25,26 +25,26 @@ export const getCategories = () =>
             body: JSON.stringify(post)
           }).then(res => res.json());
 
-          export const getPost = id =>
-  fetch(`${url}/posts/${id}`, { headers }).then(res => res.json());
+    export const getPost = id =>
+      fetch(`${url}/posts/${id}`, { headers }).then(res => res.json());
 
-  export const deletePost = id =>
-  fetch(`${url}/posts/${id}`, {
-    method: 'DELETE',
-    headers: {
-      ...headers
-    }
-  });
+    export const deletePost = id =>
+      fetch(`${url}/posts/${id}`, {
+              method: 'DELETE',
+              headers: {
+                      ...headers
+                    }
+                  });
 
-  export const updatePost = post =>
-  fetch(`${url}/posts/${post.id}`, {
-    method: 'PUT',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(post)
-  }).then(res => res.json());
+   export const updatePost = post =>
+      fetch(`${url}/posts/${post.id}`, {
+              method: 'PUT',
+              headers: {
+                ...headers,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(post)
+            }).then(res => res.json());
 
 // methods for comments
 

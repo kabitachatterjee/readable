@@ -13,12 +13,11 @@ class PostShow extends Component {
     comments: PropTypes.array,
     getPost: PropTypes.func.isRequired,
     deletePost: PropTypes.func.isRequired,
-    updatePost: PropTypes.func.isRequired,
+    //updatePost: PropTypes.func.isRequired,
     fetchComments: PropTypes.func.isRequired
   };
   state = {
       deleted: false,
-      updated: false,
       voteScore: this.props.post ? this.props.post.voteScore : ''
   };
 
@@ -34,10 +33,10 @@ class PostShow extends Component {
     this.props.deletePost(post);
     this.setState({ deleted: true });
   };
-  handleUpdate = post => {
-    this.props.updatePost(post);
-    this.setState({ updated: true });
-  }
+  // handleUpdate = post => {
+  //   this.props.updatePost(post);
+  //   this.setState({ updated: true });
+  // }
   handleUpVote = post => {
     this.setState({ voteScore: parseInt(this.props.post.voteScore) + 1 ,
                     updated: true });
@@ -56,7 +55,7 @@ class PostShow extends Component {
     const { deleted,voteScore, updated } = this.state;
     console.log(this.state);
     console.log(this.props.comments);
-    if (deleted) {
+    if (deleted || updated) {
       return <Redirect to={'/'} />;
     }
 
