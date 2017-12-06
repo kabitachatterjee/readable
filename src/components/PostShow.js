@@ -13,7 +13,7 @@ class PostShow extends Component {
     comments: PropTypes.array,
     getPost: PropTypes.func.isRequired,
     deletePost: PropTypes.func.isRequired,
-    //updatePost: PropTypes.func.isRequired,
+    updatePost: PropTypes.func.isRequired,
     fetchComments: PropTypes.func.isRequired
   };
   state = {
@@ -38,24 +38,31 @@ class PostShow extends Component {
   //   this.setState({ updated: true });
   // }
   handleUpVote = post => {
-    this.setState({ voteScore: parseInt(this.props.post.voteScore) + 1 ,
-                    updated: true });
-    this.props.updatePost(post);
+    this.setState({ voteScore: parseInt(this.props.post.voteScore) + 1 });
+                    console.log(this.state.voteScore);
+                    const updatedPost = {
+                      ...post,
+                      voteScore: this.state.voteScore
+                    };
+    this.props.updatePost(updatedPost);
 
   }
   handleDownVote = post => {
-    this.setState({ voteScore: parseInt(this.props.post.voteScore) - 1 ,
-                    updated: true });
-    this.props.updatePost(post);
+    this.setState({ voteScore: parseInt(this.props.post.voteScore) - 1 });
+    const updatedPost = {
+      ...post,
+      voteScore: this.state.voteScore
+    };
+this.props.updatePost(updatedPost);
 
   }
 
   render() {
-    const { post, comments } = this.props;
+    const { post, comments,updatePost } = this.props;
     const { deleted,voteScore, updated } = this.state;
     console.log(this.state);
     console.log(this.props.comments);
-    if (deleted || updated) {
+    if (deleted) {
       return <Redirect to={'/'} />;
     }
 
