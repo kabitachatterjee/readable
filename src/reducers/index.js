@@ -17,7 +17,7 @@ function posts(state = [], action) {
       case UPDATE_POST:
           return state.map(
             post => (action.payload.id === post.id ? action.payload : post)
-            )
+          );
     default:
       return state;
   }

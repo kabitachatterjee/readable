@@ -31,8 +31,8 @@ render() {
 
             <ul class="card card-content white-text flow-text blue-grey darken-1">
 
-              {posts.map((post) => (
-                <li key={post.id}>
+              {posts.map((post,i) => (
+                <li key={i}>
                 <Link to={`/${post.category}/${post.id}`}>
                   <p>{post.title}<i class="material-icons">more_horiz</i><em><span class="white-text right">-{post.author} on {moment(post.timestamp).format(
                                 'Do MMMM YYYY, h:mm a'
@@ -56,4 +56,3 @@ function mapStateToProps({posts},{ match }) {
 }
 
 export default connect(mapStateToProps,{fetchPosts})(ListPosts);
-//export default ListPosts

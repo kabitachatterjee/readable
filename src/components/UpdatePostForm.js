@@ -37,8 +37,7 @@ class UpdatePostForm extends Component {
   handleUpdate = event => {
     event.preventDefault();
 
-    const { updatePost } = this.props;
-    const {post} = this.state;
+    const { post, updatePost } = this.props;
 
     if (post) {
       const updatedPost = {
@@ -64,7 +63,8 @@ class UpdatePostForm extends Component {
     console.log(this.props.post);
     console.log(this.state);
     if (updated) {
-      return <Redirect to={`/${post.category}/${post.id}`} />;
+      // return <Redirect to={`/${post.category}/${post.id}`} />;
+      return <Redirect to='/' />;
     }
 
     return (
@@ -85,13 +85,13 @@ class UpdatePostForm extends Component {
   }
 }
 
-function mapStateToProps({ posts, updatePost }, { match }) {
+function mapStateToProps({ posts }, { match }) {
   return {
     post: posts.filter(post => post.id === match.params.postId)[0],
     // categories: categories.filter(
     //   category => category.path
     // )
-    updatePost: updatePost
+    //updatePost: updatePost
   };
 }
 

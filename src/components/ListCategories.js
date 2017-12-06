@@ -14,7 +14,8 @@ class ListCategories extends Component {
   static propTypes = {
     posts: PropTypes.array.isRequired,
     categories: PropTypes.array.isRequired,
-    fetchCategories: PropTypes.func.isRequired
+    fetchCategories: PropTypes.func.isRequired,
+    fetchPosts: PropTypes.func.isRequired
 
   };
 
@@ -32,8 +33,8 @@ render() {
           <h4>List of Categories</h4>
             <ul>
 
-              {categories.map((category) => (
-                <li key={category.name} className='subheader'>
+              {categories.map((category,i) => (
+                <li key={i} className='subheader'>
                   <Link to={`/${category.path}`}>{category.name} <i class="material-icons">send</i></Link>
 
                   <ul class="card card-content white-text flow-text blue-grey darken-1">
@@ -42,8 +43,8 @@ render() {
                           <i class="material-icons">add</i>
                           </Link>
                         </div>
-                  {posts.filter(post => post.category === category.name).map((post) => (
-                              <li key={post.id}>
+                  {posts.filter(post => post.category === category.name).map((post,i) => (
+                              <li key={i}>
                               <Link to={`/${post.category}/${post.id}`}>
                                 <p>{post.title} <em><span class="white-text right">-{post.author} on {moment(post.timestamp).format(
                                               'Do MMMM YYYY, h:mm a'
