@@ -15,8 +15,8 @@ class ListComments extends Component {
       <div>
       <h3 class="collection-header">List of Comments</h3>
       <ul class="collection">
-      {comments.map((comment) => (
-                  <li class="collection-item" key={comment.id}>
+      {comments.map((comment,i) => (
+                  <li class="collection-item" key={i}>
 
                     <em>{comment.body}</em>
 

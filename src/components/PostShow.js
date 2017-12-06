@@ -33,10 +33,7 @@ class PostShow extends Component {
     this.props.deletePost(post);
     this.setState({ deleted: true });
   };
-  // handleUpdate = post => {
-  //   this.props.updatePost(post);
-  //   this.setState({ updated: true });
-  // }
+
   handleUpVote = post => {
     this.setState({ voteScore: parseInt(this.props.post.voteScore) + 1 });
                     console.log(this.state.voteScore);
@@ -62,8 +59,59 @@ this.props.updatePost(updatedPost);
     const { deleted,voteScore, updated } = this.state;
     console.log(this.state);
     console.log(this.props.comments);
+
     if (deleted) {
       return <Redirect to={'/'} />;
+    }
+    if (this.props.post.commentCount === 0) {
+      return (
+        <div class="container">
+        <div class="row card">
+        <div class="col s12 m12">
+            <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+        <span class="card-title">{post.title}</span>
+        <p>{post.body}</p>
+        <em class="yellow-text right"> -{post.author} on {moment(post.timestamp).format(
+                      'Do MMMM YYYY, h:mm a'
+                    )}</em> <br/>
+        <p class="chip purple accent-2">Vote: {post.voteScore}</p>
+        <p class="chip purple accent-2">Comments: {post.commentCount}</p>
+        </div>
+        <div class="card-action">
+        <Button waves='light'>
+            <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
+        </Button>
+   <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
+   <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
+   <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
+        </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row card">
+        <div class="col s12 m12">
+        <div class="card-content blue-text">
+         0 Comments
+
+        </div>
+
+        </div>
+        </div>
+        <div class="row card">
+        <div class="col s10 m10">
+        <div class="card-content">
+        <input placeholder="Write a comment..." s={6} label="Comment" />
+        <input placeholder="author" s={6} label="author" />
+        <button class="waves-effect waves-light btn btn-small">Submit</button>
+        </div>
+        </div>
+        </div>
+        </div>
+
+      );
+
     }
 
     return(
@@ -95,8 +143,14 @@ this.props.updatePost(updatedPost);
       <div class="row card">
       <div class="col s12 m12">
       <div class="card-content blue-text">
+      Comments
       <ul>
-      <li><span class="black-text">author:</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+      {comments.map((comment,i) => (
+                  <li class="collection-item" key={i}>
+                  <em>{comment[i].body}</em>
+
+
       <div class="card-action">
       <Button waves='light'>
           <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
@@ -106,36 +160,8 @@ this.props.updatePost(updatedPost);
  <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
       </div>
       </li>
-      <li><span class="black-text">author:</span>comments show up here!!
-      <div class="card-action">
-      <Button waves='light'>
-          <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
-      </Button>
- <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
- <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
- <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
-      </div>
-      </li>
-      <li><span class="black-text">author:</span>comments show up here!!
-      <div class="card-action">
-      <Button waves='light'>
-          <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
-      </Button>
- <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
- <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
- <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
-      </div>
-      </li>
-      <li><span class="black-text">author:</span>comments show up here!!
-      <div class="card-action">
-      <Button waves='light'>
-          <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
-      </Button>
- <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
- <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
- <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
-      </div>
-      </li>
+      ))}
+
       </ul>
 
       </div>
@@ -160,7 +186,7 @@ this.props.updatePost(updatedPost);
 function mapStateToProps({ posts,comments }, { match }) {
   return {
     post: posts.filter(post => post.id === match.params.postId)[0],
-    comments: comments
+    comments: Object.values(comments)
   };
 }
 
