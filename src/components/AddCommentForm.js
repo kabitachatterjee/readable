@@ -8,21 +8,78 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class AddCommentForm extends Component {
+  static propTypes = {
+    post: PropTypes.object,
+    comment: PropTypes.object,
+    addComment: PropTypes.func.isRequired
+  };
+
+  state = {
+    author:'',
+    body:'',
+    commented: false
+  };
+  componentDidMount() {
+    const { postId } = this.props.post;
+    console.log(postId);
+  }
+
+  handleChange = name => event => {
+      this.setState({
+        [name]: event.target.value
+      });
+    };
+
+    redirect = () => this.setState({ commented: true });
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { post, comment, addComment } = this.props;
+    console.log(this.props.post);
+
+  const newComment = {
+      id: v4(),
+      timestamp: Date.now(),
+      parentId: this.props.post.id,
+      author: this.state.author,
+      body: this.state.body
+    };
+
+    console.log(newComment);
+    console.log(this.state);
+    if(newComment){
+    addComment(newComment);
+  }
+  this.redirect();
+}
   render() {
+    const { post,addComment } = this.props;
+    const { commented } = this.state;
     return (
       <div>
-      <div class="row card">
-      <div class="col s10 m10">
-      <div class="card-content">
-      <input placeholder="Write a comment..." s={6} label="Comment" />
-      <input placeholder="author" s={6} label="author" />
-      <button class="waves-effect waves-light btn btn-small">Submit</button>
-      </div>
-      </div>
-      </div>
+        <div class="row card">
+        <form onSubmit={this.handleSubmit}>
+          <div class="col s10 m10">
+            <div class="card-content">
+              <input placeholder="Write a comment..." s={6} label="Comment" type="text" name="body" value={this.state.body} onChange={this.handleChange('body')} />
+              <input placeholder="author" s={6} label="author" type="text" name="author" value={this.state.author} onChange={this.handleChange('author')} required />
+              <button class="waves-effect waves-light btn btn-small">Submit</button>
+            </div>
+          </div>
+          </form>
+        </div>
       </div>
     );
   }
 }
 
-export default AddCommentForm;
+// function mapStateToProps({addComment}) {
+//   return {
+//     addComment: addComment
+//   }
+// }
+//
+// export default connect(mapStateToProps,{addComment})(AddCommentForm);
+
+export default connect(null, { addComment})(AddCommentForm);
+
+// export default AddCommentForm;

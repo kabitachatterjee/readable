@@ -170,7 +170,7 @@ this.props.updatePost(updatedPost);
 
       </div>
       </div>
-      <AddCommentForm />
+      <AddCommentForm post={post} />
       </div>
     )
   }
