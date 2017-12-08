@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { getPost, deletePost, updatePost,fetchComments } from '../actions';
 import ListComments from './ListComments';
+import AddCommentForm from './AddCommentForm';
+
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
@@ -168,15 +170,7 @@ this.props.updatePost(updatedPost);
 
       </div>
       </div>
-      <div class="row card">
-      <div class="col s10 m10">
-      <div class="card-content">
-      <input placeholder="Write a comment..." s={6} label="Comment" />
-      <input placeholder="author" s={6} label="author" />
-      <button class="waves-effect waves-light btn btn-small">Submit</button>
-      </div>
-      </div>
-      </div>
+      <AddCommentForm />
       </div>
     )
   }
