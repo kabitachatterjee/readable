@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getPost, deletePost, updatePost,fetchComments } from '../actions';
+import { getPost, deletePost, updatePost,fetchComments, deleteComment } from '../actions';
 import ListComments from './ListComments';
 import AddCommentForm from './AddCommentForm';
 
@@ -16,7 +16,8 @@ class PostShow extends Component {
     getPost: PropTypes.func.isRequired,
     deletePost: PropTypes.func.isRequired,
     updatePost: PropTypes.func.isRequired,
-    fetchComments: PropTypes.func.isRequired
+    fetchComments: PropTypes.func.isRequired,
+    deleteComment: PropTypes.func.isRequired
   };
   state = {
       deleted: false,
@@ -55,6 +56,8 @@ class PostShow extends Component {
 this.props.updatePost(updatedPost);
 
   }
+
+  handleDeleteComment = comment => this.props.deleteComment(comment);
 
   render() {
     const { post, comments,updatePost } = this.props;
@@ -134,34 +137,7 @@ this.props.updatePost(updatedPost);
           </div>
         </div>
       </div>
-      <div class="row card">
-      <div class="col s12 m12">
-      <div class="card-content blue-text">
-      Comments
-      <ul>
-
-      {comments.map((comment,i) => (
-                  <li class="collection-item" key={i}>
-                  <em>{comment[i].author}: {comment[i].body}</em>
-
-
-      <div class="card-action">
-      <Button waves='light'>
-          <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
-      </Button>
- <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
- <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
- <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
-      </div>
-      </li>
-      ))}
-
-      </ul>
-
-      </div>
-
-      </div>
-      </div>
+      <ListComments comments={comments}/>
       <AddCommentForm post={post} />
       </div>
     )
@@ -180,5 +156,6 @@ export default connect(mapStateToProps, {
   getPost,
   deletePost,
   updatePost,
-  fetchComments
+  fetchComments,
+  deleteComment
 })(PostShow);
