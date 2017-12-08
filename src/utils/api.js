@@ -60,3 +60,11 @@ export const getCategories = () =>
     },
     body: JSON.stringify(comment)
   }).then(res => res.json());
+
+  export const deleteComment = id =>
+  fetch(`${url}/comments/${id}`, {
+    method: 'DELETE',
+    headers: {
+      ...headers
+    }
+  }).then(res => res.json());

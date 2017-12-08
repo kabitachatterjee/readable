@@ -9,6 +9,7 @@ export const DELETE_POST = 'DELETE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const DELETE_COMMENT = 'ADD_COMMENT';
 
 
 
@@ -57,5 +58,13 @@ export const fetchComments = postId => dispatch =>
     dispatch({
       type: ADD_COMMENT,
       payload: res
+    });
+  });
+
+  export const deleteComment = comment => dispatch =>
+  Api.deleteComment(comment.id).then(res => {
+    dispatch({
+      type: DELETE_COMMENT,
+      payload: comment
     });
   });

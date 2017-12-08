@@ -101,15 +101,7 @@ this.props.updatePost(updatedPost);
 
         </div>
         </div>
-        <div class="row card">
-        <div class="col s10 m10">
-        <div class="card-content">
-        <input placeholder="Write a comment..." s={6} label="Comment" />
-        <input placeholder="author" s={6} label="author" />
-        <button class="waves-effect waves-light btn btn-small">Submit</button>
-        </div>
-        </div>
-        </div>
+        <AddCommentForm post={post} />
         </div>
 
       );
@@ -150,7 +142,7 @@ this.props.updatePost(updatedPost);
 
       {comments.map((comment,i) => (
                   <li class="collection-item" key={i}>
-                  <em>{comment[i].body}</em>
+                  <em>{comment[i].author}: {comment[i].body}</em>
 
 
       <div class="card-action">

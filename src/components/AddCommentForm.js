@@ -30,7 +30,7 @@ class AddCommentForm extends Component {
       });
     };
 
-    redirect = () => this.setState({ commented: true });
+    redirect = () => this.setState({ author:'', body:'', commented: true });
   handleSubmit = (e) => {
     e.preventDefault();
     const { post, comment, addComment } = this.props;
@@ -72,14 +72,5 @@ class AddCommentForm extends Component {
   }
 }
 
-// function mapStateToProps({addComment}) {
-//   return {
-//     addComment: addComment
-//   }
-// }
-//
-// export default connect(mapStateToProps,{addComment})(AddCommentForm);
 
 export default connect(null, { addComment})(AddCommentForm);
-
-// export default AddCommentForm;
