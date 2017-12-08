@@ -1,6 +1,6 @@
 import { FETCH_POSTS } from '../actions';
 import { FETCH_CATEGORIES, FETCH_COMMENTS} from '../actions';
-import { ADD_POST } from '../actions';
+import { ADD_POST,ADD_COMMENT } from '../actions';
 import { GET_POST,DELETE_POST,UPDATE_POST } from '../actions';
 import { combineReducers } from 'redux';
 
@@ -38,6 +38,14 @@ function comments(state = [], action) {
             ...state,
               [action.payload.postId]: action.payload.payload
           };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        [action.payload.parentId]: [
+          ...state[action.payload.parentId],
+          action.payload
+        ]
+      };
     default:
       return state;
   }
