@@ -57,10 +57,13 @@ this.props.updatePost(updatedPost);
 
   }
 
-  handleDeleteComment = comment => this.props.deleteComment(comment);
+  handleDeleteComment = comment => {
+  console.log(comment[0].id);
+  this.props.deleteComment(comment[0]);
+};
 
   render() {
-    const { post, comments,updatePost } = this.props;
+    const { post, comments, updatePost, deleteComment } = this.props;
     const { deleted,voteScore, updated } = this.state;
     console.log(this.state);
     console.log(this.props.comments);
@@ -137,7 +140,8 @@ this.props.updatePost(updatedPost);
           </div>
         </div>
       </div>
-      <ListComments comments={comments}/>
+      <div>{`${post.commentCount} comments`} </div>
+      <ListComments comments={comments} handleDeleteComment={this.handleDeleteComment} />
       <AddCommentForm post={post} />
       </div>
     )
