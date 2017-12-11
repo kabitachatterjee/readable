@@ -60,6 +60,7 @@ this.props.updatePost(updatedPost);
   handleDeleteComment = comment => {
   console.log(comment[0].id);
   this.props.deleteComment(comment[0]);
+  this.setState({ deleted: true });
 };
 
   render() {

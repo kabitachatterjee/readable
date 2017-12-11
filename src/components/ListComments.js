@@ -3,6 +3,7 @@ import { fetchComments } from '../actions';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import {Button, Icon} from 'react-materialize';
+import moment from 'moment';
 
 
 class ListComments extends Component {
@@ -23,7 +24,11 @@ class ListComments extends Component {
                 {comments.map((comment,i) => (
                   <li key={i}>
 
-                    <em>{comment[i].author}: {comment[i].body}</em>
+                    <em>{comment[i].author}: {comment[i].body}</em><br/>
+                    <em class='grey-text'> on {moment(comment[i].timestamp).format(
+                                  'Do MMMM YYYY, h:mm a'
+                                )}</em>
+                    <p class="chip orange darken-1 black-text">Vote: {comment[i].voteScore}</p>
                     <div class="card-action">
                     <Button waves='light'>
                         <Link to={`/comments/${comment[i].id}/edit`}><i class="material-icons">edit</i></Link>

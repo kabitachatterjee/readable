@@ -54,6 +54,10 @@ class AddCommentForm extends Component {
   render() {
     const { post,addComment } = this.props;
     const { commented } = this.state;
+
+    if (commented) {
+      return <Redirect to={'/'} />;
+    }
     return (
       <div>
         <div class="row card">
