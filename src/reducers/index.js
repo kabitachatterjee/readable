@@ -1,6 +1,6 @@
 import { FETCH_POSTS } from '../actions';
 import { FETCH_CATEGORIES, FETCH_COMMENTS} from '../actions';
-import { ADD_POST,ADD_COMMENT,DELETE_COMMENT } from '../actions';
+import { ADD_POST,ADD_COMMENT,DELETE_COMMENT,UPDATE_COMMENT } from '../actions';
 import { GET_POST,DELETE_POST,UPDATE_POST } from '../actions';
 import { combineReducers } from 'redux';
 
@@ -51,6 +51,14 @@ function comments(state = [], action) {
         ...state,
         [action.payload.parentId]: state[action.payload.parentId].filter(
           comment => action.payload.id !== comment.id
+        )
+      };
+  case UPDATE_COMMENT:
+      return {
+        ...state,
+        [action.payload.parentId]: state[action.payload.parentId].map(
+          comment =>
+            action.payload.id === comment.id ? action.payload : comment
         )
       };
     default:
