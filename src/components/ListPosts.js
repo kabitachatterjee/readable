@@ -33,11 +33,16 @@ render() {
 
               {posts.map((post,i) => (
                 <li key={i}>
-                <Link to={`/${post.category}/${post.id}`}>
-                  <p>{post.title}<i class="material-icons">more_horiz</i><em><span class="white-text right">-{post.author} on {moment(post.timestamp).format(
-                                'Do MMMM YYYY, h:mm a'
-                              )}</span></em></p>
-                  </Link>
+
+                  <p>{post.title} <span class="chip yellow darken-1">
+                  <Link to={`/${post.category}/${post.id}`}>READ MORE</Link></span></p>
+                  <em class="yellow-text right"><p>-{post.author} on {moment(post.timestamp).format(
+                                            'Do MMMM YYYY, h:mm a'
+                                          )}</p></em>
+
+                              <p class="chip purple accent-2">Vote: {post.voteScore} </p>
+                              <p class="chip purple accent-2">Comments: {post.commentCount}</p><br/>
+
                 </li>
                ))}
               </ul>

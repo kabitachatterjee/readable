@@ -27,7 +27,7 @@ class ListComments extends Component {
                     <em>{comment[i].author}: {comment[i].body}</em><br/>
                     <em class='grey-text'> on {moment(comment[i].timestamp).format(
                                   'Do MMMM YYYY, h:mm a'
-                                )}</em>
+                                )} </em>
                     <p class="chip orange darken-1 black-text">Vote: {comment[i].voteScore}</p>
                     <div class="card-action">
                     <Button waves='light'>
