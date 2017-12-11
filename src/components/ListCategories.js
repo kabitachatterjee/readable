@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { fetchCategories, fetchPosts } from '../actions';
+import { fetchCategories, fetchPosts, deletePost } from '../actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
@@ -15,16 +15,21 @@ class ListCategories extends Component {
     posts: PropTypes.array.isRequired,
     categories: PropTypes.array.isRequired,
     fetchCategories: PropTypes.func.isRequired,
-    fetchPosts: PropTypes.func.isRequired
-
-  };
+    fetchPosts: PropTypes.func.isRequired,
+    deletePost: PropTypes.func.isRequired
+};
 
   componentDidMount() {
     this.props.fetchCategories();
     this.props.fetchPosts();
   }
+
+  handleDelete = post => {
+    this.props.deletePost(post);
+    this.setState({ deleted: true });
+  };
 render() {
-  const { categories,posts} = this.props
+  const { categories, posts, deletePost} = this.props
   console.log(this.props);
   return (
     <div class="container">
@@ -47,7 +52,7 @@ render() {
                               <li key={i}>
                               <Link to={`/${post.category}/${post.id}`}>
                                 <p class="card-title">{post.title} </p>
-                                <em class="white-text right">-{post.author} on {moment(post.timestamp).format(
+                                <em class="yellow-text right">-{post.author} on {moment(post.timestamp).format(
                                               'Do MMMM YYYY, h:mm a'
                                             )}</em>
                                 </Link>
@@ -79,4 +84,4 @@ function mapStateToProps({categories,posts},{ match }) {
   }
 }
 
-export default connect(mapStateToProps,{fetchCategories, fetchPosts})(ListCategories);
+export default connect(mapStateToProps,{fetchCategories, fetchPosts, deletePost})(ListCategories);
