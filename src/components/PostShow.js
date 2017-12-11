@@ -153,6 +153,7 @@ this.props.updatePost(updatedPost);
 function mapStateToProps({ posts,comments }, { match }) {
   return {
     post: posts.filter(post => post.id === match.params.postId)[0],
+    //comments: Object.values(comments).filter(comment => comment.parentId === match.params.postId)
     comments: Object.values(comments)
   };
 }

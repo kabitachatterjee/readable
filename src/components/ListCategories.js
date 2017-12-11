@@ -46,10 +46,13 @@ render() {
                   {posts.filter(post => post.category === category.name).map((post,i) => (
                               <li key={i}>
                               <Link to={`/${post.category}/${post.id}`}>
-                                <p>{post.title} <em><span class="white-text right">-{post.author} on {moment(post.timestamp).format(
+                                <p class="card-title">{post.title} </p>
+                                <em class="white-text right">-{post.author} on {moment(post.timestamp).format(
                                               'Do MMMM YYYY, h:mm a'
-                                            )}</span></em></p>
+                                            )}</em>
                                 </Link>
+                                <p class="chip purple accent-2">Vote: {post.voteScore}</p>
+                                <p class="chip purple accent-2">Comments: {post.commentCount}</p><br/>
                                 <Button waves='light'>
                                     <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
                                 </Button>
