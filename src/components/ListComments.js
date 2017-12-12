@@ -30,12 +30,12 @@ class ListComments extends Component {
                                 )} </em>
                     <p class="chip orange darken-1 black-text">Vote: {comment[i].voteScore}</p>
                     <div class="card-action">
-                    <Button waves='light'>
+                    <Button waves='light' className='light-blue'>
                         <Link to={`/comments/${comment[i].id}/edit`}><i class="material-icons">edit</i></Link>
                     </Button>
-               <Button waves='light' onClick={() => handleDeleteComment(comment)}><i class="material-icons">delete</i></Button>
-               <Button waves='light' onClick={() => this.handleUpVote(comment)}><i class="material-icons">thumb_up</i></Button>
-               <Button waves='light' onClick={() => this.handleDownVote(comment)}><i class="material-icons">thumb_down</i></Button>
+               <Button waves='light' className='light-blue' onClick={() => handleDeleteComment(comment)}><i class="material-icons">delete</i></Button>
+               <Button waves='light' className='light-blue' onClick={() => this.handleUpVote(comment)}><i class="material-icons">thumb_up</i></Button>
+               <Button waves='light' className='light-blue' onClick={() => this.handleDownVote(comment)}><i class="material-icons">thumb_down</i></Button>
                     </div>
 
                   </li>

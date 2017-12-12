@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { fetchCategories, fetchPosts, deletePost } from '../actions';
+import { fetchCategories, fetchPosts, deletePost, updatePost } from '../actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
@@ -16,7 +16,8 @@ class ListCategories extends Component {
     categories: PropTypes.array.isRequired,
     fetchCategories: PropTypes.func.isRequired,
     fetchPosts: PropTypes.func.isRequired,
-    deletePost: PropTypes.func.isRequired
+    deletePost: PropTypes.func.isRequired,
+    updatePost: PropTypes.func.isRequired
 };
 
   componentDidMount() {
@@ -24,12 +25,41 @@ class ListCategories extends Component {
     this.props.fetchPosts();
   }
 
+  state = {
+      deleted: false,
+      voteScore: ''
+  };
+
   handleDelete = post => {
     this.props.deletePost(post);
     this.setState({ deleted: true });
   };
+
+  handleUpVote = post => {
+    console.log(post);
+
+    this.setState(prevState => {
+      return {voteScore: parseInt(post.voteScore) + 1 }
+    });
+
+                    const updatedPost = {
+                      ...post,
+                      voteScore: parseInt(this.state.voteScore)
+                    };
+    this.props.updatePost(updatedPost);
+
+  }
+  handleDownVote = post => {
+    this.setState({ voteScore: parseInt(post.voteScore) - 1 });
+    const updatedPost = {
+      ...post,
+      voteScore: parseInt(this.state.voteScore)
+    };
+this.props.updatePost(updatedPost);
+
+  }
 render() {
-  const { categories, posts, deletePost} = this.props
+  const { categories, posts, deletePost, updatePost} = this.props
   console.log(this.props);
   return (
     <div class="container">
@@ -43,12 +73,14 @@ render() {
                   <Link to={`/${category.path}`}>{category.name} <i class="material-icons">send</i></Link>
 
                   <ul class="card card-content white-text flow-text blue-grey darken-1">
-                  <div class="btn-floating blue right">
+                  <div class="btn-floating btn-large waves-effect waves-light blue right">
                           <Link to={`/posts/new`}>
                           <i class="material-icons">add</i>
                           </Link>
                         </div>
+
                   {posts.filter(post => post.category === category.name).map((post,i) => (
+
                               <li key={i}>
                               <Link to={`/${post.category}/${post.id}`}>
                                 <p class="card-title">{post.title} </p>
@@ -58,12 +90,12 @@ render() {
                                 </Link>
                                 <p class="chip purple accent-2">Vote: {post.voteScore}</p>
                                 <p class="chip purple accent-2">Comments: {post.commentCount}</p><br/>
-                                <Button waves='light'>
+                                <Button waves='light' className='light-blue'>
                                     <Link to={`/${post.category}/${post.id}/edit`}><i class="material-icons">edit</i></Link>
                                 </Button>
-                           <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
-                           <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
-                           <Button waves='light' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
+                           <Button waves='light' className='light-blue' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
+                           <Button waves='light' className='light-blue' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
+                           <Button waves='light' className='light-blue' onClick={() => this.handleDownVote(post)}><i class="material-icons">thumb_down</i></Button>
                               </li>
                              ))}
                   </ul>
@@ -84,4 +116,4 @@ function mapStateToProps({categories,posts},{ match }) {
   }
 }
 
-export default connect(mapStateToProps,{fetchCategories, fetchPosts, deletePost})(ListCategories);
+export default connect(mapStateToProps,{fetchCategories, fetchPosts, deletePost, updatePost})(ListCategories);

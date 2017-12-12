@@ -22,7 +22,7 @@ render() {
     <div class="container">
       <div class="row card">
         <div class="col s12 m12">
-        <div class="btn-floating blue right">
+        <div class="btn-floating btn-large blue right">
                 <Link to={`/posts/new`}>
                 <i class="material-icons">add</i>
                 </Link>

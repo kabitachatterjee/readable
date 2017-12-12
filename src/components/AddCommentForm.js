@@ -66,7 +66,7 @@ class AddCommentForm extends Component {
             <div class="card-content">
               <input placeholder="Write a comment..." s={6} label="Comment" type="text" name="body" value={this.state.body} onChange={this.handleChange('body')} />
               <input placeholder="author" s={6} label="author" type="text" name="author" value={this.state.author} onChange={this.handleChange('author')} required />
-              <button class="waves-effect waves-light btn btn-small">Submit</button>
+              <button class="waves-effect waves-light btn btn-small light-blue">Submit</button>
             </div>
           </div>
           </form>

@@ -80,7 +80,7 @@ handleChange = name => event => {
           <input  type="text" name="body" value={this.state.body} onChange={this.handleChange('body')} placeholder="Write a post" required />
           <input  type="text" name="category" value={this.state.category}  onChange={this.handleChange('category')} placeholder="Category" required />
           <input  type="text" name="author" value={this.state.author} onChange={this.handleChange('author')} placeholder="Author" required /><br />
-          <button class="waves-effect waves-light btn">Submit</button>
+          <button class="waves-effect waves-light btn black">Submit</button>
 
             </form>
             </div>
