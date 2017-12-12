@@ -59,7 +59,7 @@ render() {
                                 <p class="chip purple accent-2">Vote: {post.voteScore}</p>
                                 <p class="chip purple accent-2">Comments: {post.commentCount}</p><br/>
                                 <Button waves='light'>
-                                    <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
+                                    <Link to={`/${post.category}/${post.id}/edit`}><i class="material-icons">edit</i></Link>
                                 </Button>
                            <Button waves='light' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
                            <Button waves='light' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
