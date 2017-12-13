@@ -133,7 +133,7 @@ this.props.updatePost(updatedPost);
       </div>
       <div class="card-action">
       <Button waves='light' className='light-blue'>
-          <Link to={`${post.id}/edit`}><i class="material-icons">edit</i></Link>
+          <Link to={`${post.id}/edit`} style={{ textDecoration: 'none' }}><i class="material-icons">edit</i></Link>
       </Button>
  <Button waves='light' className='light-blue' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
  <Button waves='light' className='light-blue' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
@@ -157,6 +157,7 @@ function mapStateToProps({ posts,comments }, { match }) {
     post: posts.filter(post => post.id === match.params.postId)[0],
     //comments: Object.values(comments).filter(comment => comment.parentId === match.params.postId)
     comments: Object.values(comments)
+    //comments: comments
   };
 }
 

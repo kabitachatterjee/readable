@@ -82,7 +82,7 @@ render() {
                   {posts.filter(post => post.category === category.name).map((post,i) => (
 
                               <li key={i}>
-                              <Link to={`/${post.category}/${post.id}`}>
+                              <Link to={`/${post.category}/${post.id}`} style={{ textDecoration: 'none' }}>
                                 <p class="card-title">{post.title} </p>
                                 <em class="yellow-text right">-{post.author} on {moment(post.timestamp).format(
                                               'Do MMMM YYYY, h:mm a'
@@ -91,7 +91,7 @@ render() {
                                 <p class="chip purple accent-2">Vote: {post.voteScore}</p>
                                 <p class="chip purple accent-2">Comments: {post.commentCount}</p><br/>
                                 <Button waves='light' className='light-blue'>
-                                    <Link to={`/${post.category}/${post.id}/edit`}><i class="material-icons">edit</i></Link>
+                                    <Link to={`/${post.category}/${post.id}/edit`} style={{ textDecoration: 'none' }}><i class="material-icons">edit</i></Link>
                                 </Button>
                            <Button waves='light' className='light-blue' onClick={() => this.handleDelete(post)}><i class="material-icons">delete</i></Button>
                            <Button waves='light' className='light-blue' onClick={() => this.handleUpVote(post)}><i class="material-icons">thumb_up</i></Button>
