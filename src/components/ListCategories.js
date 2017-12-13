@@ -25,10 +25,10 @@ class ListCategories extends Component {
     this.props.fetchPosts();
   }
 
-  state = {
-      deleted: false,
-      voteScore: ''
-  };
+  // state = {
+  //     deleted: false,
+  //     voteScore: ''
+  // };
 
   handleDelete = post => {
     this.props.deletePost(post);
@@ -37,23 +37,17 @@ class ListCategories extends Component {
 
   handleUpVote = post => {
     console.log(post);
-
-    this.setState(prevState => {
-      return {voteScore: parseInt(post.voteScore) + 1 }
-    });
-
-                    const updatedPost = {
+    const updatedPost = {
                       ...post,
-                      voteScore: parseInt(this.state.voteScore)
+                      voteScore: parseInt(post.voteScore) + 1
                     };
     this.props.updatePost(updatedPost);
 
   }
   handleDownVote = post => {
-    this.setState({ voteScore: parseInt(post.voteScore) - 1 });
     const updatedPost = {
       ...post,
-      voteScore: parseInt(this.state.voteScore)
+      voteScore: parseInt(post.voteScore) - 1
     };
 this.props.updatePost(updatedPost);
 

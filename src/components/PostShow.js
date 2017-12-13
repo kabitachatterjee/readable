@@ -38,22 +38,18 @@ class PostShow extends Component {
   };
 
   handleUpVote = post => {
-    this.setState(prevState => {
-      return {voteScore: parseInt(this.props.post.voteScore) + 1 }
-    });
                     console.log(this.state.voteScore);
                     const updatedPost = {
                       ...post,
-                      voteScore: this.state.voteScore
+                      voteScore: post.voteScore + 1
                     };
     this.props.updatePost(updatedPost);
 
   }
   handleDownVote = post => {
-    this.setState({ voteScore: parseInt(this.props.post.voteScore) - 1 });
     const updatedPost = {
       ...post,
-      voteScore: this.state.voteScore
+      voteScore: post.voteScore - 1
     };
 this.props.updatePost(updatedPost);
 
